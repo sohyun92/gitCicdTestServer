@@ -12,6 +12,11 @@ jobs:
       - name: Github Repository 파일 불러오기
         uses: actions/checkout@v4
 
+      - name: JDK 17버전 설치 test
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
 
       - name: application.yml 파일 만들기
         run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/application.yml
@@ -19,7 +24,7 @@ jobs:
       - name: 테스트 및 빌드하기
         run: |
           chmod +x gradlew
-          sudo ./gradlew clean build
+          ./gradlew clean build
 
       - name: 빌드된 파일 이름 변경하기
         run: mv ./build/libs/*SNAPSHOT.jar ./project.jar
