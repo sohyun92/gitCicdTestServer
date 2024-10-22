@@ -12,12 +12,6 @@ jobs:
       - name: Github Repository 파일 불러오기
         uses: actions/checkout@v4
 
-      - name: JDK 17버전 설치 test
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 17
-
       - name: application.yml 파일 만들기
         run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/application.yml
 
@@ -38,7 +32,7 @@ jobs:
           source: project.jar
           target: /home/ubuntu/gitCicdTestServer/tobe
 
-      - name: SSH로 EC2에 접속하기
+      - name: SSH로 EC2에 접속하기a
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.EC2_HOST }}
